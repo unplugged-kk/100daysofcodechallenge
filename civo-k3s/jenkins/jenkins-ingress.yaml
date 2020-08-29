@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jenkins-ingress
+spec:
+  rules:
+  - host: jenkins.17d44765-16e1-426b-9ffd-ded6654063a7.k8s.civo.com
+    http:
+      paths:
+      - backend:
+          serviceName: jenkins-frontend
+          servicePort: 8080

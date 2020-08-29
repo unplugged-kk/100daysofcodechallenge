@@ -1,0 +1,43 @@
+Relevant Documentation
+
+https://docs.docker.com/engine/reference/commandline/push/
+https://docs.docker.com/engine/reference/commandline/pull/
+https://docs.docker.com/engine/reference/commandline/login/
+https://docs.docker.com/registry/insecure/
+https://docs.docker.com/engine/reference/commandline/search/
+Lesson Reference
+
+Pull and search images on Docker hub:
+docker pull ubuntu
+docker search ubuntu
+Attempt to authenticate against the private registry:
+docker login <registry public hostname>
+Log in with the credentials we created earlier (testuser and password). A certificate signed by unknown authority message should pop up, because we are using a self-signed certificate.
+Configure docker to ignore certificate verification when accessing the private registry:
+sudo vi /etc/docker/daemon.json
+{
+  "insecure-registries" : ["<registry public hostname>"]
+}
+Restart docker:
+sudo systemctl restart docker
+Try docker login again:
+docker login <registry public hostname>
+This time it should work!
+However, this method of accessing the registry is very insecure. It turns off certificate verification entirely, exposing us to man-in-the-middle attacks. So, let's do this the right way.
+First, log out of the private registry:
+docker logout <registry public hostname>
+Next, remove the insecure-registries key and value from /etc/docker/daemon.json.
+Restart Docker:
+sudo systemctl restart docker
+Download the cert public key from the registry and configure the local docker engine to use it:
+sudo mkdir -p /etc/docker/certs.d/<registry public hostname>
+sudo scp cloud_user@<registry public hostname>:/home/cloud_user/registry/certs/domain.crt /etc/docker/certs.d/<registry public hostname>
+Try docker login:
+docker login <registry public hostname>
+Push to and pull from your private registry:
+docker pull ubuntu
+docker tag ubuntu <registry public hostname>/ubuntu
+docker push <registry public hostname>/ubuntu
+docker image rm <registry public hostname>/ubuntu
+docker image rm ubuntu
+docker pull <registry public hostname>/ubuntu

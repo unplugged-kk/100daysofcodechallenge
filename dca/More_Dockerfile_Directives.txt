@@ -1,0 +1,33 @@
+Relevant Documentation
+
+https://docs.docker.com/engine/reference/builder/
+Lesson Reference
+
+Edit your Dockerfile:
+cd ~/custom-nginx
+vi Dockerfile
+Add more customization to the Dockerfile:
+# Simple nginx image
+FROM ubuntu:bionic
+
+ENV NGINX_VERSION 1.14.0-0ubuntu1.7
+
+RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y nginx=$NGINX_VERSION
+
+WORKDIR /var/www/html/
+ADD index.html ./
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+
+STOPSIGNAL SIGTERM
+HEALTHCHECK CMD curl localhost:80
+Rebuild the image ad test it:
+docker build -t custom-nginx .
+docker run -d -p 8080:80 custom-nginx
+curl localhost:8080
+Locate our running container with docker ps, then remove it to clean up the environment:
+docker ps
+docker container rm -f <container id>

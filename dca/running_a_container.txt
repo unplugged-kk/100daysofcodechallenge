@@ -1,0 +1,24 @@
+Relevant Documentation
+
+https://docs.docker.com/engine/reference/run/
+Lesson Reference
+
+Run a simple container using the hello-world image:
+docker run hello-world
+Run a container using a specific image tag:
+docker run nginx:1.15.11
+Run a container with a command and arguments:
+docker run busybox echo hello world!
+Run an Nginx container customized with a variety of flags:
+docker run -d --name nginx --restart unless-stopped -p 8080:80 --memory 500M --memory-reservation 256M nginx
+List any currently running containers:
+docker ps
+List all containers, both running and stopped:
+docker ps -a
+Stop the Nginx container:
+docker container stop nginx
+Start a stopped container:
+docker container start nginx
+Delete a container (but it must be stopped first):
+docker container rm nginx
+

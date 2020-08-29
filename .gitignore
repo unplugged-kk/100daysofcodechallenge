@@ -1,0 +1,10 @@
+*.csr
+*.kubeconfig
+*.pem
+*.json
+*.code-workspace
+*.tfstate
+*.tfstate.backup
+.DS_Store
+.terraform/
+.csv

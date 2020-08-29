@@ -1,0 +1,27 @@
+Relevant Documentation
+
+https://docs.docker.com/engine/reference/builder/
+Lesson Reference
+
+Set up a project directory:
+mkdir ~/custom-nginx
+cd ~/custom-nginx
+vi index.html
+Add a simple message to index.html:
+Hello, World!
+Create a Dockerfile:
+vi Dockerfile
+Add some directives to the Dockerfile:
+# Simple nginx image
+FROM ubuntu:bionic
+
+ENV NGINX_VERSION 1.14.0-0ubuntu1.7
+
+RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y nginx=$NGINX_VERSION
+
+CMD ["nginx", "-g", "daemon off;"]
+Build and test the image:
+docker build -t custom-nginx .
+docker run --name custom-nginx -d -p 8080:80 custom-nginx
+curl localhost:8080

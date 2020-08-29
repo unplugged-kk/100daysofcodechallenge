@@ -1,0 +1,21 @@
+Lesson Reference
+
+Set up a new project directory to create a basic image:
+cd ~/
+mkdir alpine-hello
+cd alpine-hello
+vi Dockerfile
+Create a Dockerfile that will result in a multi-layered image:
+FROM alpine:3.9.3
+RUN echo "Hello, World!" > message.txt
+CMD cat message.txt
+Build the image and check how many layers it has:
+docker build -t nonflat .
+docker image history nonflat
+Run a container from the image and export its file system to an archive:
+docker run -d --name flat_container nonflat
+docker export flat_container > flat.tar
+Import the archive to a new image and check how many layers the new image has:
+cat flat.tar | docker import - flat:latest
+docker image history flat
+
