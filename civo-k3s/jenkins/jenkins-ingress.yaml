@@ -4,7 +4,7 @@ metadata:
   name: jenkins-ingress
 spec:
   rules:
-  - host: jenkins.17d44765-16e1-426b-9ffd-ded6654063a7.k8s.civo.com
+  - host: jenkins.f1a56871-b825-4015-9371-ed4fc9d21b9e.k8s.civo.com
     http:
       paths:
       - backend:
