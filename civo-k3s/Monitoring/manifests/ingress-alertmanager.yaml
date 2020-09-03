@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-  - host: alertmanager.185.136.233.222.nip.io
+  - host: alertmanager.185.136.233.225.nip.io
     http:
       paths:
       - backend:
@@ -14,4 +14,4 @@ spec:
         path: /
   tls:
   - hosts:
-    - alertmanager.185.136.233.222.nip.io
+    - alertmanager.185.136.233.225.nip.io

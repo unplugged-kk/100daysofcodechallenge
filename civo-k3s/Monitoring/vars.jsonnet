@@ -7,7 +7,7 @@
     {
       // After deployment, run the create_gmail_auth.sh script from scripts dir.
       name: 'smtpRelay',
-      enabled: false,
+      enabled: true,
       file: import 'modules/smtp_relay.jsonnet',
     },
     {
@@ -44,11 +44,11 @@
 
   k3s: {
     enabled: true,
-    master_ip: ['185.136.233.222'],
+    master_ip: ['185.136.233.225'],
   },
 
   // Domain suffix for the ingresses
-  suffixDomain: '185.136.233.222.nip.io',
+  suffixDomain: '185.136.233.225.nip.io',
   // If TLSingress is true, a self-signed HTTPS ingress with redirect will be created
   TLSingress: true,
   // If UseProvidedCerts is true, provided files will be used on created HTTPS ingresses.

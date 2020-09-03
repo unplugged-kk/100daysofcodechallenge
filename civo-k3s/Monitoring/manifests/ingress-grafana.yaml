@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-  - host: grafana.185.136.233.222.nip.io
+  - host: grafana.185.136.233.225.nip.io
     http:
       paths:
       - backend:
@@ -14,4 +14,4 @@ spec:
         path: /
   tls:
   - hosts:
-    - grafana.185.136.233.222.nip.io
+    - grafana.185.136.233.225.nip.io
