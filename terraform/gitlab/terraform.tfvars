@@ -1,0 +1,7 @@
+region = "asia-east1"
+zone = "asia-east1-a"
+project = "automation-extended-infra"
+cluster_name = "assignment-cluster"
+username = "kishore"
+script_path = "/Users/kishore/Documents/Projects/100daysofcodechallenge/terraform/gitlab/scripts/bootstrap.sh"
+private_key_path = "/Users/kishore/.ssh/gitlab"

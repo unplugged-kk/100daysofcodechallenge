@@ -1,1 +1,1 @@
-istest = false
+istest = true
